@@ -7,7 +7,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.openDocumentProject.adapter.FileAdapter
 import com.example.openDocumentProject.databinding.ActivityMainBinding
 import com.example.openDocumentProject.models.FileItem
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
     private fun initAdapter() {
         binding.fileRecycler.apply {
             adapter = fileAdapter
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, 3)
         }
     }
 
