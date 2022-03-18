@@ -3,12 +3,14 @@ package com.example.openDocumentProject
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.openDocumentProject.adapter.FileAdapter
 import com.example.openDocumentProject.databinding.ActivityMainBinding
+import com.example.openDocumentProject.models.FileItem
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +34,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var attachFile: ActivityResultLauncher<Array<String>>
     private var photoUri: Uri? = null
 
+    private val fileAdapter by lazy {
+        FileAdapter()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -39,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         registerForMultipleActivityResult()
         initListeners()
+        initAdapter()
     }
 
     private fun registerForMultipleActivityResult() {
@@ -66,6 +73,13 @@ class MainActivity : AppCompatActivity() {
             methodAttachFile.setOnClickListener {
                 onMethodForAddFileClick(MethodForAddFile.ATTACH_FILE)
             }
+        }
+    }
+
+    private fun initAdapter() {
+        binding.fileRecycler.apply {
+            adapter = fileAdapter
+            layoutManager = LinearLayoutManager(context)
         }
     }
 
@@ -101,6 +115,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     private fun prepareUrl(url: Uri?) {
-        Log.d("VLADISLAV", url?.path ?: "")
+        url?.let {
+            fileAdapter.addItem(FileItem(url))
+        }
     }
 }

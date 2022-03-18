@@ -4,24 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/method_select_from_gallery"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Выбрать из галереи"/>
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/method_make_a_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Сделать фото"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/method_select_from_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Выбрать из галереи"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/method_attach_file"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Прикрепить файл"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/method_make_a_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сделать фото"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/method_attach_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Прикрепить файл"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/file_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
