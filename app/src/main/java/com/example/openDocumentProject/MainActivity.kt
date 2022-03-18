@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.openDocumentProject.adapter.FileAdapter
+import com.example.openDocumentProject.adapter.GridLayoutDecoration
 import com.example.openDocumentProject.databinding.ActivityMainBinding
 import com.example.openDocumentProject.models.FileItem
 import java.io.File
@@ -19,6 +20,9 @@ class MainActivity : AppCompatActivity() {
         private val GET_FILE_TYPE = arrayOf("*/*")
         private const val IMAGE_FILE_TYPE = "image/*"
         private val TEMP_PHOTO_FILE_NAME = File("tmp_image_file.jpg")
+
+        private val GRID_SIZE = 3
+        private val SPACE_BETWEEN_ADAPTER_ITEMS = 8
 
         enum class MethodForAddFile {
             SELECT_FROM_GALLERY,
@@ -79,7 +83,8 @@ class MainActivity : AppCompatActivity() {
     private fun initAdapter() {
         binding.fileRecycler.apply {
             adapter = fileAdapter
-            layoutManager = GridLayoutManager(context, 3)
+            layoutManager = GridLayoutManager(context, GRID_SIZE)
+            addItemDecoration(GridLayoutDecoration(SPACE_BETWEEN_ADAPTER_ITEMS, GRID_SIZE))
         }
     }
 
